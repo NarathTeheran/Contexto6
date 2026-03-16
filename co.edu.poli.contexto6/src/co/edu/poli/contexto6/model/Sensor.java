@@ -9,6 +9,7 @@ public class Sensor {
     // ---- ESTÁTICO SEGÚN TU INDICACIÓN ----
     private static double margendeerror = 0.0;
     private Proveedor proveedor;
+    private final String codigoSensor = "SensorEspacial";
 
     public Sensor(double version, double niveldecarga, double presicion, int aniodefabricacion,
                   double margendeerrorConstructor, Proveedor proveedor) {
@@ -40,6 +41,10 @@ public class Sensor {
         if (fecha == null || fecha.length() < 4) return 0;
         try { return Integer.parseInt(fecha.substring(0, 4)); } catch (Exception e) { return 0; }
     }
+    
+    public final void mostrarTipoSensor() {
+        System.out.println("Sensor base del sistema");
+    }
 
     // --------- GETTERS/SETTERS ---------
     public double getVersion() { return version; }
@@ -61,16 +66,19 @@ public class Sensor {
     public static double getMargendeerror() { return margendeerror; }
     public static void setMargendeerror(double me) { margendeerror = me; }
 
+    public String getCodigoSensor() {
+		return codigoSensor;
+	}
 
-    @Override
+	@Override
     public String toString() {
-        return "Sensor{" +
+        return "Sensor {" +
                 "version=" + version +
                 ", niveldecarga=" + niveldecarga +
                 ", presicion=" + presicion +
                 ", aniodefabricacion=" + aniodefabricacion +
                 ", margendeerror(ESTATICO)=" + margendeerror +
-                ", proveedor=" + proveedor +
+                ", proveedor=" + proveedor + "codigoSensor=" + codigoSensor +
                 '}';
     }
 }

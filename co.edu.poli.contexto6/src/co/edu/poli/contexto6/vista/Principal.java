@@ -44,6 +44,54 @@ public class Principal {
 
         Sensor.setMargendeerror(5.0);
         System.out.println("Margen de error 2: " + Sensor.getMargendeerror());
+        System.out.println("");
+        
+        //arreglo
+        Sensorfisiologico Ob1 = new Sensorfisiologico(1.2, 99.0, 0.90, 2025, 2.0, prov, "Frecuencia Cardiaca", 220.0, "bpm", true, "Pecho"); 
+        Sensorelectroquimico Ob2 = new Sensorelectroquimico(1.6, 100.0, 0.80, 2024, 2.0, prov, 2.6, 0.88, true, "Sangre");
+        Sensor Ob3 = new Sensor(2.0, 84.0, 0.88, 2025, 2.0, prov);
+     
+        Sensor[] arreglo = new Sensor[5];
+        
+        arreglo[0] = Ob1;
+        arreglo[2] = Ob2;
+        arreglo[4]= Ob3;
+        //sobreesctitura
+        for(int i = 0; i < arreglo.length; i++) {
+			if(arreglo[i] != null)
+				System.out.println("Antiguedad: " + arreglo[i].calcularantiguedad(2026) + " años" );
+			else
+				System.out.println("nulo");
+		}
+        // metodo que recibe parametro
+	    mostrarInformacionSensor(Ob1);
+	    mostrarInformacionSensor(Ob2);
+	    mostrarInformacionSensor(Ob3);
+        // metodo que retorna supersuperclaes
+	    Sensor sensorNuevo = crearSensor();
+	    System.out.println("\nSensor retornado por el método:");
+	    System.out.println(sensorNuevo);
+	    
+		// atributo que no se puede cambiar: declare el atributo como FINAL en la clase sensor
+		// private final String codigoSensor
+	
+		// metodo que no se pueda sobreescribir: declare el metodo como FINAL en la clase sensor
+		// public final void mostrarTipoSensor()
+	
+		// clase que no se pueda heredar: declare la clase como FINAL
+		// public final class Medicamento
+	        
+    }
+    
+    public static void mostrarInformacionSensor(Sensor sensor) {//El metodo espera sensor pero tambien recibe a las subclases
+        System.out.println("\nMostrando informacion del sensor:");
+        System.out.println(sensor.toString());
 
     }
+
+	 public static Sensor crearSensor() {//El metodo retorna sensor pero el objeto es de una subclase
+	     Proveedor proveedor = new Proveedor("Proveedor ESA", "P-002", 20, "Sensores", true, true);
+	     Sensor sensor = new Sensorelectroquimico(2.0, 90, 0.98, 2023, 0.1, proveedor, 2.6, 0.88, true, "Sangre");
+	     return sensor;
+ }
 }

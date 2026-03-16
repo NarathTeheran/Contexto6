@@ -1,7 +1,7 @@
 package co.edu.poli.contexto6.model;
 
-public class Medicamento {
-
+public final class Medicamento {
+	
     private String nombre;
     private String codigo;
     private int dosis;

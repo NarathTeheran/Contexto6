@@ -19,6 +19,10 @@ public class Sensorfisiologico extends Sensor {
         this.estaEnContacto = estaEnContacto;
         this.zonademedicion = zonademedicion;
     }
+    @Override
+    public int calcularantiguedad(int anioactual) {
+        return super.calcularantiguedad(anioactual);
+    }
 
     // Getters y setters
     public String getParametromedico() { return parametromedico; }

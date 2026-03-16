@@ -1,0 +1,99 @@
+Repositorio en GitHub:
+https://github.com/NarathTeheran/Contexto6.git
+
+
+METODO CONSTRUCTOR
+Es un metodo que se ejecuta cuando se crea un objeto y sirve para inicializar los atributos que tine
+Ubicacion en el codigo:
+Clase: Sensor
+Linea : 14 a 23
+
+
+METODOS DE ACCESO (GETTERS Y SETTERS)
+Son metodos que se usan para leer o obtener el valor de un atributo, get, o para modificarlos, set
+Ubicacion en el codigo:
+Clase: Sensorfisiologico
+Linea: 28 a 41
+
+
+METODO toString
+Es un metodo para mostrar la información de un objeto en forma de texto
+Ubicacion en el codigo:
+Clase: Sensorelectroquimico
+Linea: 35 a 43
+
+
+MODIFICADOR STATIC
+No necesita crear un objeto para poder acceder al metodo, es a nivel de clase no de objeto, y cuando un atributo es Static y se cambia un valor, todos quedan con el mismo valor
+Ubicacion en el codigo:
+Clase: Sensor
+Linea: 10
+
+
+MODIFICADOR FINAL
+Representa seguridad, no puede haber herencia y un atributo final no se puede modificar, y un metodo final no se puede sobreescribir
+Ubicacion en el codigo:
+Clase: Sensor
+Linea atributo final: 12
+Linea metodo final: 45 a 47
+
+Linea clase final: 
+Clase: Medicamento: Linea: 3
+
+
+VISIBILIDADES
+Son el acceso que se tiene a las clases, los atributos y los metodos,private, public, protected o package 
+Ubicacion en el codigo:
+Clase: Proveedor
+Linea: Visibilidad privada: 5 a 10
+
+
+MULTIPLICIDADES
+Dice cuantos objetos de una clase se relacionan con otra, cuando es mas de 1 se dice que se crea un arreglo, nunca puede haber de muchos a muchos
+Ubicacion en el codigo:
+Clase: Diagnostico
+Linea: 11
+
+
+SOBRESCRITURA DE METODOS
+Dejar el mismo nombre, mismos parametros, y el mismo retorno, solo cambia la implementacion, y solo aplica en herencia
+Ubicacion en el codigo:
+Clase: Sensor
+Linea: 31 a 33
+Clase: Sensorelectroquimico
+Linea: 18 a 20
+
+
+SOBRECARGA DE METODOS
+Significa tener el mismo nombre, mismo retorno pero diferentes parametros
+Ubicacion en el codigo:
+Clase: Sensor
+Linea: 31 a 38
+
+
+CREACION DE OBJETOS
+Es cuando se crea un objeto con los valores de la clase y puede usar los metodos de la clase
+Ubicacion en el codigo:
+Clase: Principal
+Linea: 50 a 52
+
+
+AGREGACIONES
+Es la relacion donde una clase contiene objetos de otra clase, el puede y el debe
+Ubicacion en el codigo:
+Clase: 	Diagnostico
+Linea: 9
+
+
+HERENCIA
+Ayuda a no repetir codigo, ya que permite que una clase herede atributos y metodos de otra
+Ubicacion en el codigo:
+Clase: Sensorelectroquimico
+Linea: 3 herencia de Sensor
+
+
+POLIMORFISMO
+Permite que un objeto se comporte de varias formas dependiendo de quien lo implemente
+Ubicacion en el codigo:
+Clase: Principal
+Linea: 86 a 96
