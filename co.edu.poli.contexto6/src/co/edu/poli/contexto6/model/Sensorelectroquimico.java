@@ -7,8 +7,8 @@ public class Sensorelectroquimico extends Sensor {
     private boolean requiereMuestra;
     private String tipodemuestra;
 
-    public Sensorelectroquimico(double version, double niveldecarga, double presicion, int aniodefabricacion, double margendeerror, Proveedor proveedor, double tiempodeAnalisis, double sensibilidad, boolean requiereMuestra, String tipodemuestra) {
-        super(version, niveldecarga, presicion, aniodefabricacion, margendeerror, proveedor);
+    public Sensorelectroquimico(String id, double version, double niveldecarga, double presicion, int aniodefabricacion, double margendeerror, Proveedor proveedor, double tiempodeAnalisis, double sensibilidad, boolean requiereMuestra, String tipodemuestra) {
+        super(id, version, niveldecarga, presicion, aniodefabricacion, margendeerror, proveedor);
         this.tiempodeAnalisis = tiempodeAnalisis;
         this.sensibilidad = sensibilidad;
         this.requiereMuestra = requiereMuestra;
@@ -18,6 +18,11 @@ public class Sensorelectroquimico extends Sensor {
     public int calcularantiguedad(int anioactual) {
         return super.calcularantiguedad(anioactual);
     }
+
+	public double obtenerLectura() {
+	    return 0;
+	}
+
     // Getters y setters
     public double getTiempodeAnalisis() { return tiempodeAnalisis; }
     public void setTiempodeAnalisis(double tiempodeAnalisis) { this.tiempodeAnalisis = tiempodeAnalisis; }

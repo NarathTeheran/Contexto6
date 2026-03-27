@@ -1,7 +1,8 @@
 package co.edu.poli.contexto6.model;
 
-public class Sensor {
-
+public abstract class Sensor {
+	
+	private String id;
     private double version;
     private double niveldecarga;
     private double presicion;
@@ -11,9 +12,10 @@ public class Sensor {
     private Proveedor proveedor;
     private final String codigoSensor = "SensorEspacial";
 
-    public Sensor(double version, double niveldecarga, double presicion, int aniodefabricacion,
+    public Sensor(String id, double version, double niveldecarga, double presicion, int aniodefabricacion,
                   double margendeerrorConstructor, Proveedor proveedor) {
-        this.version = version;
+        this.id = id;
+    	this.version = version;
         this.niveldecarga = niveldecarga;
         this.presicion = presicion;
         this.aniodefabricacion = aniodefabricacion;
@@ -46,9 +48,16 @@ public class Sensor {
         System.out.println("Sensor base del sistema");
     }
 
+    public abstract double obtenerLectura();
+
+
     // --------- GETTERS/SETTERS ---------
-    public double getVersion() { return version; }
-    public void setVersion(double version) { this.version = version; }
+    
+    public String getId() {return id;}
+	public void setId(String id) { this.id = id;}
+	
+	public double getVersion() { return version; }
+	public void setVersion(double version) { this.version = version; }
 
     public double getNiveldecarga() { return niveldecarga; }
     public void setNiveldecarga(double niveldecarga) { this.niveldecarga = niveldecarga; }
@@ -73,7 +82,8 @@ public class Sensor {
 	@Override
     public String toString() {
         return "Sensor {" +
-                "version=" + version +
+        		"id=" + id +
+                ", version=" + version +
                 ", niveldecarga=" + niveldecarga +
                 ", presicion=" + presicion +
                 ", aniodefabricacion=" + aniodefabricacion +

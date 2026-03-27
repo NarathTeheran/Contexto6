@@ -11,8 +11,8 @@ public class Principal {
         Medicamento[] meds = new Medicamento[]{med};
         Diagnostico dx = new Diagnostico("DX-01", "O+", sv, false, meds, false, true, "Sin novedades");
         Alertamedica alerta = new Alertamedica("AL-01", "Recordatorio", 2, "2026-03-09", "10:30", sv, a1);
-        Sensor sens1 = new Sensor(1.0, 90.0, 0.98, 2024, 2.0, prov);
-        Sensorelectroquimico sens2 = new Sensorelectroquimico(1.1, 85.0, 0.99, 2022, 2.0, prov, 2.5, 0.95, true, "Sangre");
+        Sensor sens1 = new Sensorelectroquimico("098", 1.0, 90.0, 0.98, 2024, 2.0, prov, 2.6, 0.88, true, "Sangre");
+        Sensorelectroquimico sens2 = new Sensorelectroquimico("123", 1.1, 85.0, 0.99, 2022, 2.0, prov, 2.5, 0.95, true, "Sangre");
         Sensor[] sensores = new Sensor[]{sens1, sens2};
         Registrodemonitoreo reg = new Registrodemonitoreo("R-01", "2026-03-09", sv, a1, dx, alerta, sensores);
 
@@ -47,9 +47,9 @@ public class Principal {
         System.out.println("");
         
         //arreglo
-        Sensorfisiologico Ob1 = new Sensorfisiologico(1.2, 99.0, 0.90, 2025, 2.0, prov, "Frecuencia Cardiaca", 220.0, "bpm", true, "Pecho"); 
-        Sensorelectroquimico Ob2 = new Sensorelectroquimico(1.6, 100.0, 0.80, 2024, 2.0, prov, 2.6, 0.88, true, "Sangre");
-        Sensor Ob3 = new Sensor(2.0, 84.0, 0.88, 2025, 2.0, prov);
+        Sensorfisiologico Ob1 = new Sensorfisiologico("234", 1.2, 99.0, 0.90, 2025, 2.0, prov, "Frecuencia Cardiaca", 220.0, "bpm", true, "Pecho"); 
+        Sensorelectroquimico Ob2 = new Sensorelectroquimico("345", 1.6, 100.0, 0.80, 2024, 2.0, prov, 2.6, 0.88, true, "Sangre");
+        Sensor Ob3 = new Sensorfisiologico("567", 2.0, 84.0, 0.88, 2025, 2.0, prov, "Frecuencia cardiaca", 221.0, "bpm", true, "Pecho");
      
         Sensor[] arreglo = new Sensor[5];
         
@@ -80,7 +80,40 @@ public class Principal {
 	
 		// clase que no se pueda heredar: declare la clase como FINAL
 		// public final class Medicamento
-	        
+	    
+	    System.out.println("\nOPERACIONES CRUD");
+	    OperacionCRUD crud = new ImplementacionOperacionCRUD();//Se crea la implementacion del crud para manejar objetos de tipo sensor	
+        Sensor objeto1 = new Sensorelectroquimico("981", 1.0, 90.0, 0.98, 2024, 2.0, prov, 2.6, 0.88, true, "Sangre");
+        Sensorfisiologico objeto2 = new Sensorfisiologico("230", 1.2, 99.0, 0.90, 2025, 2.0, prov, "Frecuencia Cardiaca", 220.0, "bpm", true, "Pecho"); 
+        //Se crean 2 objetos, como sensor es abstract se instancian como clases hijas
+	    System.out.println("\nCREAR");
+        System.out.println(crud.crear(objeto1));//se insertan los sensores usando el metodo crear del crud
+        System.out.println(crud.crear(objeto2));
+
+        System.out.println("\nLEER UNO");//Se busca un sensor por id
+        Sensor encontrado = crud.leerUno("230");
+        System.out.println(encontrado);
+
+        System.out.println("\nLEER TODOS");//Se muestran todos los sensores registrados en el crud
+        Sensor[] objetos = crud.leerTodos();
+        for (Sensor s : objetos) {
+            System.out.println(s);
+        }
+
+        System.out.println("\nMODIFICAR");//Se modifica el sensor
+        Sensor sModificado = new Sensorfisiologico("267", 1.2, 99.0, 0.90, 2025, 2.0, prov, "Frecuencia Cardiaca", 220.0, "bpm", true, "Pecho"); 
+        System.out.println(crud.modificar("230", sModificado));//en este caso con id 230
+
+        System.out.println("\nELIMINAR");//se elimina el sensor con id
+        Sensor eliminado = crud.eliminar("981");//en este caso, 981
+        System.out.println(eliminado);
+
+        System.out.println("\nLEER TODOS");//se muestran los sensores restantes despues de eliminar
+               objetos = crud.leerTodos();
+               for (Sensor s : objetos) {
+                   System.out.println(s);
+               }
+
     }
     
     public static void mostrarInformacionSensor(Sensor sensor) {//El metodo espera sensor pero tambien recibe a las subclases
@@ -91,7 +124,7 @@ public class Principal {
 
 	 public static Sensor crearSensor() {//El metodo retorna sensor pero el objeto es de una subclase
 	     Proveedor proveedor = new Proveedor("Proveedor ESA", "P-002", 20, "Sensores", true, true);
-	     Sensor sensor = new Sensorelectroquimico(2.0, 90, 0.98, 2023, 0.1, proveedor, 2.6, 0.88, true, "Sangre");
+	     Sensor sensor = new Sensorelectroquimico("456", 2.0, 90, 0.98, 2023, 0.1, proveedor, 2.6, 0.88, true, "Sangre");
 	     return sensor;
  }
 }

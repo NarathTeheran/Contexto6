@@ -8,11 +8,11 @@ public class Sensorfisiologico extends Sensor {
     private boolean estaEnContacto;
     private String zonademedicion;
 
-    public Sensorfisiologico(double version, double niveldecarga, double presicion, int aniodefabricacion,
+    public Sensorfisiologico(String id, double version, double niveldecarga, double presicion, int aniodefabricacion,
                              double margendeerror, Proveedor proveedor,
                              String parametromedico, double rangodemedicion, String unidadmedida,
                              boolean estaEnContacto, String zonademedicion) {
-        super(version, niveldecarga, presicion, aniodefabricacion, margendeerror, proveedor);
+        super(id, version, niveldecarga, presicion, aniodefabricacion, margendeerror, proveedor);
         this.parametromedico = parametromedico;
         this.rangodemedicion = rangodemedicion;
         this.unidadmedida = unidadmedida;
@@ -23,6 +23,10 @@ public class Sensorfisiologico extends Sensor {
     public int calcularantiguedad(int anioactual) {
         return super.calcularantiguedad(anioactual);
     }
+
+	public double obtenerLectura() {
+	    return 0;
+	}
 
     // Getters y setters
     public String getParametromedico() { return parametromedico; }

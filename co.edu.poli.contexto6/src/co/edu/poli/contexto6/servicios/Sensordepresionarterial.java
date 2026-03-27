@@ -9,12 +9,12 @@ public class Sensordepresionarterial extends Sensorfisiologico {
     private double presionSistolica;
     private double presionDiastolica;
 
-    public Sensordepresionarterial(double version, double niveldecarga, double presicion, int aniodefabricacion,
+    public Sensordepresionarterial(String id, double version, double niveldecarga, double presicion, int aniodefabricacion,
                                    double margendeerror, Proveedor proveedor,
                                    String parametromedico, double rangodemedicion, String unidadmedida,
                                    boolean estaEnContacto, String zonademedicion,
                                    String metodomedicion, double presionSistolica, double presionDiastolica) {
-        super(version, niveldecarga, presicion, aniodefabricacion, margendeerror, proveedor,
+        super(id, version, niveldecarga, presicion, aniodefabricacion, margendeerror, proveedor,
               parametromedico, rangodemedicion, unidadmedida, estaEnContacto, zonademedicion);
         this.metodomedicion = metodomedicion;
         this.presionSistolica = presionSistolica;
