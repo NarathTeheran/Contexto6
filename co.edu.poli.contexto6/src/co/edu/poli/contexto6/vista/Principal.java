@@ -1,9 +1,12 @@
 package co.edu.poli.contexto6.vista;
+import java.util.Scanner;
+
 import co.edu.poli.contexto6.model.*;
+import co.edu.poli.contexto6.servicios.*;
 
 public class Principal {
     public static void main(String[] args) {
-
+    	/*
         Proveedor prov = new Proveedor("Acme Space", "P-001", 12, "Sensores", true, true);
         Astronauta a1 = new Astronauta("A-01", "Valentina", 1992, "Comandante", 68.0, 1.72);
         Signovital sv = new Signovital(88.0, true, 118.0, 36.8, 16.0, 97.0, a1);
@@ -113,7 +116,6 @@ public class Principal {
                for (Sensor s : objetos) {
                    System.out.println(s);
                }
-
     }
     
     public static void mostrarInformacionSensor(Sensor sensor) {//El metodo espera sensor pero tambien recibe a las subclases
@@ -126,5 +128,141 @@ public class Principal {
 	     Proveedor proveedor = new Proveedor("Proveedor ESA", "P-002", 20, "Sensores", true, true);
 	     Sensor sensor = new Sensorelectroquimico("456", 2.0, 90, 0.98, 2023, 0.1, proveedor, 2.6, 0.88, true, "Sangre");
 	     return sensor;
- }
+	 }
+	 */
+    	Scanner sc = new Scanner(System.in);
+        ImplementacionOperacionCRUD servicio = new ImplementacionOperacionCRUD();
+        int opcion = 0;
+
+        do {
+            System.out.println("\n====== MENU SENSORES ======");
+            System.out.println("1. Crear sensor");
+            System.out.println("2. Leer sensor por ID");
+            System.out.println("3. Mostrar todos los sensores");
+            System.out.println("4. Modificar sensor");
+            System.out.println("5. Eliminar sensor");
+            System.out.println("6. Serializar");
+            System.out.println("7. Deserializar");
+            System.out.println("8. Salir");
+            System.out.print("Seleccione opcion: ");
+
+            opcion = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcion) {
+
+            case 1:
+                System.out.println("=== CREAR SENSOR ===");
+                System.out.print("ID: ");
+                String id = sc.nextLine();
+                System.out.print("Version: ");
+                double version = sc.nextDouble();
+                System.out.print("Nivel de carga: ");
+                double nivel = sc.nextDouble();
+                System.out.print("Precision: ");
+                double precision = sc.nextDouble();
+                System.out.print("Anio de fabricacion: ");
+                int anio = sc.nextInt();
+                sc.nextLine();
+                
+                Proveedor proveedor = new Proveedor("Acme Space", "P-001", 12, "Sensores", true, true);
+                Sensor sensor = new Sensorfisiologico(id, version, nivel, precision, anio, 0.1, proveedor, "ritmo cardiaco", 100, "ppm", true, "pecho");
+                
+                System.out.println(servicio.crear(sensor));
+                break;
+
+            case 2:
+                System.out.println("=== LEER UNO ===");
+                System.out.print("Ingrese ID del sensor: ");
+                String idBuscar = sc.nextLine();
+                Sensor encontrado = servicio.leerUno(idBuscar);
+                
+                if (encontrado != null) {
+                    System.out.println(encontrado);
+                } else {
+                    System.out.println("Sensor no encontrado");
+                }
+                break;
+
+            case 3:
+                System.out.println("=== LEER TODOS ===");
+                Sensor[] sensores = servicio.leerTodos();
+                for (Sensor s : sensores) {
+                    System.out.println(s);
+                }
+                break;
+                
+            case 4:
+                System.out.println("=== MODIFICAR SENSOR ===");
+                System.out.print("Ingrese ID del sensor a modificar: ");
+                String idModificar = sc.nextLine();
+                Sensor sensorExistente = servicio.leerUno(idModificar);
+                
+                if (sensorExistente == null) {
+                    System.out.println("Sensor no encontrado");
+                    break;
+                }
+                System.out.print("Nueva version: ");
+                double versionM = sc.nextDouble();
+                System.out.print("Nuevo nivel de carga: ");
+                double nivelM = sc.nextDouble();
+                System.out.print("Nueva precision: ");
+                double precisionM = sc.nextDouble();
+                System.out.print("Nuevo año de fabricacion: ");
+                int anioM = sc.nextInt();
+                sc.nextLine();
+                
+                Proveedor proveedorM = new Proveedor("Acme Space", "P-001", 12, "Sensores", true, true);
+                Sensor sensorModificado = new Sensorfisiologico(idModificar, versionM, nivelM, precisionM, anioM, 0.1, proveedorM, "ritmo cardiaco", 100, "ppm", true, "pecho" );
+                
+                System.out.println(servicio.modificar(idModificar, sensorModificado));
+                break;
+
+            case 5:
+                System.out.println("=== ELIMINAR SENSOR ===");
+                System.out.print("Ingrese ID del sensor a eliminar: ");
+                String idEliminar = sc.nextLine();
+                Sensor eliminado = servicio.eliminar(idEliminar);
+                if (eliminado != null) {
+                    System.out.println("Sensor eliminado");
+                } else {
+                    System.out.println("Sensor no encontrado");
+                }
+                break;
+
+            case 6:
+                System.out.println("=== SERIALIZAR ===");
+                String resultado = servicio.serializar(servicio.getSensores(), "", "sensores.bin");
+                System.out.println(resultado);
+                break;
+
+            case 7:
+                System.out.println("=== DESERIALIZAR ===");
+                Sensor[] cargados = servicio.deserializar("", "sensores.bin");
+
+                if (cargados != null) {
+                    servicio.setSensores(cargados); // ← MUY IMPORTANTE
+                    System.out.println("Sensores cargados correctamente");
+
+                    for (Sensor s : servicio.leerTodos()) {
+                        System.out.println(s);
+                    }
+
+                } else {
+                    System.out.println("No se pudieron cargar los sensores");
+                }
+                break;
+
+            case 8:
+                System.out.println("Programa finalizado");
+                break;
+
+            default:
+                System.out.println("Opcion invalida");
+            }
+
+        } while (opcion != 0);
+
+        sc.close();
+    }    	
 }
