@@ -169,17 +169,17 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
     /**
      * Serializa un arreglo de sensores en un archivo.
      * 
-     * @param estudiantes arreglo de sensores a guardar
+     * @param sensores arreglo de sensores a guardar
      * @param path ruta del archivo
      * @param name nombre del archivo
      * @return mensaje indicando el resultado del proceso
      */
     @Override
-    public String serializar(Sensor[] estudiantes, String path, String name) {
+    public String serializar(Sensor[] sensores, String path, String name) {
         try {
             FileOutputStream fos = new FileOutputStream(path + name);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(estudiantes);
+            oos.writeObject(sensores);
             oos.close();
             fos.close();
             return "Archivo create!!";
