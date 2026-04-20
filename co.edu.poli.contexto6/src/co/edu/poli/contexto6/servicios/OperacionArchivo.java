@@ -13,6 +13,7 @@ import co.edu.poli.contexto6.model.Sensor;
  * @author Narath Teheran
  * @since 2026
  */
+
 public interface OperacionArchivo {
     
     /**

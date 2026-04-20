@@ -14,6 +14,7 @@ import co.edu.poli.contexto6.model.Sensor;
  * @author Narath Nikole Teheran Velandia
  * @since 2026
  */
+
 public interface OperacionCRUD {
 
     /**

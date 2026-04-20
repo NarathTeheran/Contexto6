@@ -130,6 +130,7 @@ public class Principal {
 	     return sensor;
 	 }
 	 */
+    	
     	Scanner sc = new Scanner(System.in);
         ImplementacionOperacionCRUD servicio = new ImplementacionOperacionCRUD();
         int opcion = 0;

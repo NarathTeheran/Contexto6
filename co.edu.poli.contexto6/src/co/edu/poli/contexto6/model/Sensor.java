@@ -15,6 +15,7 @@ import java.io.Serializable;
  * @author Narath Teheran
  * @since 2026
  */
+
 public abstract class Sensor implements Serializable{
 
     /**

@@ -51,6 +51,7 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
      * @param objeto sensor que se desea registrar
      * @return mensaje indicando el resultado de la operación
      */
+    
     @Override
     public String crear(Sensor objeto) throws Exception {
         if (objeto == null) {
