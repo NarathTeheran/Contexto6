@@ -52,33 +52,36 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
      * @return mensaje indicando el resultado de la operación
      */
     @Override
-    public String crear(Sensor objeto) {
+    public String crear(Sensor objeto) throws Exception {
         if (objeto == null) {
-            return "El objeto Sensor es null";
+            throw new Exception("El objeto Sensor es null");
         }
+
         if (objeto.getId() == null || objeto.getId().isEmpty()) {
-            return "El ID del Sensor no es valido";
+            throw new Exception("El ID del Sensor no es válido");
         }
-        // Validar que no exista un Sensor con el mismo ID
+
         for (Sensor s : arregloSensor) {
             if (s != null && s.getId().equals(objeto.getId())) {
-                return "Error: Ya existe un Sensor con ese ID";
+                throw new Exception("Ya existe un Sensor con ese ID");
             }
         }
-        // Insertar en el primer null
+
         for (int i = 0; i < arregloSensor.length; i++) {
             if (arregloSensor[i] == null) {
-            	arregloSensor[i] = objeto;
+                arregloSensor[i] = objeto;
                 return "Sensor creado correctamente";
             }
         }
-        // Si no hay espacio, crecer el arreglo
+
         Sensor[] nuevoArreglo = new Sensor[arregloSensor.length * 2];
         for (int i = 0; i < arregloSensor.length; i++) {
             nuevoArreglo[i] = arregloSensor[i];
         }
+
         nuevoArreglo[arregloSensor.length] = objeto;
         arregloSensor = nuevoArreglo;
+
         return "Sensor creado correctamente (arreglo redimensionado)";
     }
 
@@ -132,17 +135,20 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
      * @return mensaje indicando el resultado de la operación
      */
     @Override
-    public String modificar(String id, Sensor objeto) {
+    public String modificar(String id, Sensor objeto) throws Exception {
+
         if (id == null || id.isEmpty() || objeto == null) {
-            return "Error: Datos inválidos";
+            throw new Exception("Datos inválidos");
         }
+
         for (int i = 0; i < arregloSensor.length; i++) {
             if (arregloSensor[i] != null && arregloSensor[i].getId().equals(id)) {
-            	arregloSensor[i] = objeto;
+                arregloSensor[i] = objeto;
                 return "Sensor modificado correctamente";
             }
         }
-        return "Sensor no encontrado";
+
+        throw new Exception("Sensor no encontrado");
     }
 
     /**
@@ -152,10 +158,12 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
      * @return sensor eliminado o null si no se encontró
      */
     @Override
-    public Sensor eliminar(String id) {
+    public Sensor eliminar(String id) throws Exception {
+
         if (id == null || id.isEmpty()) {
-            return null;
+            throw new Exception("ID inválido");
         }
+
         for (int i = 0; i < arregloSensor.length; i++) {
             if (arregloSensor[i] != null && arregloSensor[i].getId().equals(id)) {
                 Sensor eliminado = arregloSensor[i];
@@ -163,7 +171,8 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
                 return eliminado;
             }
         }
-        return null;
+
+        throw new Exception("Sensor no encontrado");
     }
     
     /**
@@ -175,18 +184,14 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
      * @return mensaje indicando el resultado del proceso
      */
     @Override
-    public String serializar(Sensor[] sensores, String path, String name) {
-        try {
-            FileOutputStream fos = new FileOutputStream(path + name);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(sensores);
-            oos.close();
-            fos.close();
-            return "Archivo create!!";
-        } catch (IOException ioe) {
-            return "Error file " + ioe.getMessage();
-        }
-    }
+	public String serializar(Sensor[] sensores, String path, String name) throws Exception{
+		FileOutputStream fos = new FileOutputStream(path + name);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(sensores);
+		oos.close();
+		fos.close();
+		return "Archivo create!!";
+	}
 
     /**
      * Deserializa un archivo para recuperar un arreglo de sensores.
@@ -196,22 +201,17 @@ public class ImplementacionOperacionCRUD implements OperacionCRUD, OperacionArch
      * @return arreglo de sensores leído del archivo
      */
     @Override
-    public Sensor[] deserializar(String path, String name) {
-        Sensor[] a = null;
-        try {
-            FileInputStream fis = new FileInputStream(path + name);
-            ObjectInputStream ois = new ObjectInputStream(fis);
+	public Sensor[] deserializar(String path, String name) throws Exception {
+		Sensor[] a = null;
+		FileInputStream fis = new FileInputStream(path + name);
+		ObjectInputStream ois = new ObjectInputStream(fis);
 
-            a = (Sensor[]) ois.readObject();
+		a = (Sensor[]) ois.readObject();
 
-            ois.close();
-            fis.close();
-        } catch (IOException ioe) {
-            System.err.println(ioe.getMessage());
-        } catch (ClassNotFoundException c) {
-            System.err.println(c.getMessage());
-        }
-        return a;
-    }
+		ois.close();
+		fis.close();
+
+		return a;
+	}
 
 }

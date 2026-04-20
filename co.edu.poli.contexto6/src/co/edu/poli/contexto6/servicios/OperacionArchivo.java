@@ -30,7 +30,7 @@ public interface OperacionArchivo {
      * @return Un mensaje de texto que indica el resultado del proceso
      *         de serialización (éxito o error).
      */
-    public String serializar(Sensor[] sensores, String path, String name);
+    public String serializar(Sensor[] sensores, String path, String name)throws Exception;
 
     /**
      * Método encargado de recuperar la información de sensores almacenada
@@ -46,6 +46,6 @@ public interface OperacionArchivo {
      * @return Un arreglo de objetos Sensor con la información recuperada
      *         desde el archivo.
      */
-    public Sensor[] deserializar(String path, String name);
+    public Sensor[] deserializar(String path, String name)throws Exception;
 
 }

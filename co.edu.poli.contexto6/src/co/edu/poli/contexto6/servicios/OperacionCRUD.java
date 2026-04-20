@@ -24,7 +24,7 @@ public interface OperacionCRUD {
      * @return Un mensaje de texto que indica si el sensor fue creado
      *         correctamente o si ocurrió algún error en el proceso.
      */
-    String crear(Sensor objeto);
+	String crear(Sensor objeto) throws Exception;
 
     /**
      * Método encargado de consultar un sensor específico utilizando su
@@ -55,7 +55,7 @@ public interface OperacionCRUD {
      * @return Un mensaje de texto que indica si la modificación fue
      *         realizada correctamente o si ocurrió algún error.
      */
-    String modificar(String id, Sensor objeto);
+	String modificar(String id, Sensor objeto) throws Exception;
 
     /**
      * Método encargado de eliminar un sensor del sistema utilizando su
@@ -66,5 +66,5 @@ public interface OperacionCRUD {
      * @return El objeto Sensor que fue eliminado del sistema. Si no existe,
      *         puede retornar null.
      */
-    Sensor eliminar(String id);
+	Sensor eliminar(String id) throws Exception;
 }
