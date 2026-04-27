@@ -244,7 +244,25 @@ public class Principal {
                     sc.nextLine(); 
                 }
                 break;
+                
+            case 5:
+                System.out.println("=== ELIMINAR SENSOR ===");
 
+                try {
+                    System.out.print("Ingrese ID del sensor a eliminar: ");
+                    String idEliminar = sc.nextLine();
+
+                    Sensor eliminado = servicio.eliminar(idEliminar);
+
+                    System.out.println("Sensor eliminado correctamente");
+                    System.out.println(eliminado);
+
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+
+                break;
+                
             case 6:
                 System.out.println("=== SERIALIZAR ===");
                 try {
