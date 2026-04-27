@@ -247,7 +247,6 @@ public class Principal {
                 
             case 5:
                 System.out.println("=== ELIMINAR SENSOR ===");
-
                 try {
                     System.out.print("Ingrese ID del sensor a eliminar: ");
                     String idEliminar = sc.nextLine();
